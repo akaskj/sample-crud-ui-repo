@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app="vehicles">
+    <head>
+        <title>Hello AngularJS</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+        <script src="homepage.js"></script>
+        <link rel="stylesheet" href="homepage.css">
+    </head>
+
+    <body>
+        <div ng-controller="vehicleController">
+
+            <h1>Vehicle repository</h1>
+            <h3>Click here to get all the vehicle details in the repository :</h3> <button ng-click="showDetails = ! showDetails"> get vehicles </button>
+            <ul class="procedures" ng-show="showDetails">
+                <li ng-repeat="item in res">
+                    <div class="procedure-details">
+                        <p>ID :   {{item.Id}}</p>
+                        <p>Year : {{item.Year}}</p>
+                        <p>Make : {{item.Make}}</p>
+                        <p>Model : {{item.Model}}</p>
+                    </div>
+                    <button ng-click="editVehicle( item )" class="button"> Edit </button> <button ng-click="deleteVehicle( item )" class="button"> Delete </button><br><br>
+                </li>
+            </ul>
+
+            <h3>Enter the vehicle1 Id :</h3> <input type = "text" ng-model="vid"> <button ng-click="showVehicleDetailEdit(); showVehicle = ! showVehicle"> get vehicle </button>
+
+            <div class="procedure-details" ng-show ="showVehicle">
+                <p>ID : {{id}}</p>
+                <p>Year : {{year}}</p>
+                <p>Make : {{make}}</p>
+                <p>Model : {{model}}</p>
+            </div>
+
+            <form ng-submit="submitVehicle()" class="new-vehicle">
+                <h3>Enter the vehicle details to add a new vehicle</h3>
+                <p>Year :</p> <input type="text" name="Year" ng-model="form.Year" required>
+                <p>Make :</p> <input type="text" name="Make" ng-model="form.Make" required>
+                <p>Model :</p> <input type="text" name="Model" ng-model="form.Model" required>
+                <input type="submit" class="button">
+            </form>
+
+        </div>
+    </body>
+</html>
